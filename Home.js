@@ -1,9 +1,14 @@
-const baseImageUrl = "https://image.tmdb.org/t/p/w500/";
+const baseImageUrl = "https://image.tmdb.org/t/p/original/";
 const slider = document.getElementById("slider");
 const prevButton = document.getElementById("prevButton");
 const nextButton = document.getElementById("nextButton");
 const scrollAmount = 200;
-GetTrendingLists();
+const trendingSection = document.getElementById("trending-section");
+const posterTitle = document.getElementById("poster-title");
+const posterDetails = document.getElementById("poster-details");
+let data ;
+
+UpdatingTrendingUi();
 
 // Event Listerners
 prevButton.addEventListener("click", () => {
@@ -21,7 +26,7 @@ nextButton.addEventListener("click", () => {
 });
 
 //   Async Methods
-async function GetTrendingLists() {
+async function GetTrendingData() {
   const options = {
     method: "GET",
     headers: {
@@ -35,7 +40,7 @@ async function GetTrendingLists() {
     "https://api.themoviedb.org/3/trending/all/day?language=en-US",
     options
   );
-  let data;
+  
   try {
     if (!response.ok) {
       throw new Error(`HTTP error! ${response.status}`);
@@ -45,7 +50,12 @@ async function GetTrendingLists() {
   } catch (error) {
     console.error("Error", error);
   }
-  let result = data.results;
+  
+  
+  return data?.results || [];
+}
+async function UpdatingTrendingUi(){
+  let result = await GetTrendingData();
   slider.innerHTML = "";
   let content = "";
   for (let i = 0; i < result.length; i++) {
@@ -53,8 +63,37 @@ async function GetTrendingLists() {
       class="w-36 h-52 rounded-lg hover:scale-105 transition-transform "
       src="${baseImageUrl}${result[i].poster_path}"
       alt="Movie 1"
+      id ="${result[i].id}"
+      
     />`;
   }
   slider.innerHTML = content;
-  return data?.results || [];
+  let selectedItem = result[2];
+  let name = selectedItem.title ? selectedItem.title : selectedItem.name;
+  trendingSection.style.backgroundImage = `url('${baseImageUrl}${selectedItem.backdrop_path}')`;
+  posterTitle.innerHTML =name;
+  posterDetails.innerHTML= selectedItem.overview;
+
+  // Add event listener to the slider container
+  slider.addEventListener("click", function(event) {
+    if (event.target.tagName === "IMG") {
+      const id = event.target.id; 
+      ChangingBackGroundIMG(Number(id)); 
+    }
+  });
+ 
 }
+
+async function ChangingBackGroundIMG(id) {
+  const result = await GetTrendingData();
+
+  const selectedItem = result.find((item) => item.id === id); 
+  if (selectedItem) {
+    let name = selectedItem.title ? selectedItem.title : selectedItem.name;
+    trendingSection.style.backgroundImage = `url('${baseImageUrl}${selectedItem.backdrop_path}')`;
+    posterTitle.innerHTML =name;
+    posterDetails.innerHTML= selectedItem.overview;
+
+  } 
+}
+
