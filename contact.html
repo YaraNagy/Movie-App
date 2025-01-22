@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="output.css">
 </head>
 
-<body class="text-white bg-contactBgImg bg-cover bg-origin-border overflow-hidden">
+<body class="text-white bg-contactBgImg bg-cover bg-origin-border">
     <!-- Navbar -->
     <nav class="relative z-20 flex justify-around items-center p-4">
         <!-- Left side  -->
@@ -42,8 +42,8 @@
         </div>
     </nav>
 
-    <div class="flex flex-row items-center p-20">
-        <div class="w-1/3 animate-slidingFromLeft">
+    <div class="flex flex-col lg:flex-row items-center p-20">
+        <div class="w-full lg:w-1/3 sm:mb-5 animate-slidingFromLeft">
             <h2 class="text-white font-bold text-4xl py-5">
                 Welcome to our<br> Contact page!
             </h2>
@@ -63,19 +63,39 @@
             </div>
         </div>
 
-        <div class="w-2/3 animate-droppingFromTop bg-gradient-to-t from-transparent rounded-xl to-[#161616] p-10 mx-10">
-            <form action="POST">
-                <input type="text" placeholder="Enter First Name" class="border-2 border-gray-600 bg-transparent rounded-lg text-slate-300 
-                w-[48.5%] py-3 px-2 my-3 mr-3">
-                <input type="text" placeholder="Enter Last Name" class="border-2 border-gray-600 bg-transparent rounded-lg text-slate-300 
-                    w-[48.5%] py-3 px-2 my-3">
-                <input type="email" placeholder="Enter Your Email" class="border-2 border-gray-600 bg-transparent rounded-lg text-slate-300 
-                    w-[48.5%] py-3 px-2 my-3 mr-3">
-                <input type="text" placeholder="Phone Number" class="border-2 border-gray-600 bg-transparent rounded-lg text-slate-300 
-                    w-[48.5%] py-3 px-2 my-3">
-                <textarea placeholder="Write Your Massage Here..." class="border-2 border-gray-600 bg-transparent rounded-lg text-slate-300 
-                    my-3 py-3 px-2 w-[100%] h-52">
+        <div class="w-full lg:w-2/3 animate-droppingFromTop bg-gradient-to-t from-transparent rounded-xl to-[#161616] p-10 mx-10">
+            <form id="contact-from">
+                <input id="fname" type="text" placeholder="Enter First Name" class="border-2 border-gray-600 bg-transparent rounded-lg text-slate-300 
+                w-full md:w-[48.5%] py-3 px-2 my-3 mr-3">
+                <p id="contact-fname-error" class="hidden font-semibold mt-2 text-sm text-red-600 dark:text-red-500">
+                    Please enter your first name.
+                </p>
+                
+                <input id="lname" type="text" placeholder="Enter Last Name" class="border-2 border-gray-600 bg-transparent rounded-lg text-slate-300 
+                w-full md:w-[48.5%] py-3 px-2 my-3">
+                <p id="contact-lname-error" class="hidden ml-3 font-semibold mt-2 text-sm text-red-600 dark:text-red-500">
+                    Please enter your last name.
+                </p>
+                
+                <input id="email" type="email" placeholder="Enter Your Email" class="border-2 border-gray-600 bg-transparent rounded-lg text-slate-300 
+                w-full md:w-[48.5%] py-3 px-2 my-3 mr-3">
+                <p id="contact-email-error" class="hidden font-semibold mt-2 text-sm text-red-600 dark:text-red-500">
+                    Please enter a valid email address.
+                </p>
+                
+                <input id="phone-no" type="text" placeholder="Phone Number" class="border-2 border-gray-600 bg-transparent rounded-lg text-slate-300 
+                w-full md:w-[48.5%] py-3 px-2 my-3">
+                <p id="contact-phone-error" class="hidden ml-3 font-semibold mt-2 text-sm text-red-600 dark:text-red-500">
+                    Please enter a valid phone number.
+                </p>
+                
+                <textarea id="msg" placeholder="Write Your Massage Here..." class="border-2 border-gray-600 bg-transparent rounded-lg text-slate-300 
+                    my-3 py-3 px-2 w-[100%] h-20 md:h-52">
                 </textarea>
+                <p id="contact-msg-error" class="hidden mb-5 font-semibold mt-2 text-sm text-red-600 dark:text-red-500">
+                    Please enter your message.
+                </p>
+
 
                 <button id="sub-btn" type="submit" class="border-2 border-gray-600 rounded-lg px-7 py-2 mx-auto
                     font-semibold hover:bg-yellow-600 hover:border-black duration-300">
@@ -86,7 +106,7 @@
     </div>
 
 
-
+    <script src="/contact.js"></script>
 </body>
 
 </html>
