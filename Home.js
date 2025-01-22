@@ -6,9 +6,14 @@ const scrollAmount = 200;
 const trendingSection = document.getElementById("trending-section");
 const posterTitle = document.getElementById("poster-title");
 const posterDetails = document.getElementById("poster-details");
+const dropDown = document.getElementById("darkModeSelect");
+const inputSearch = document.getElementById("searchBar");
+var currentPage = 1;
+var list = [];
 let data ;
 
 UpdatingTrendingUi();
+getContent();
 
 // Event Listerners
 prevButton.addEventListener("click", () => {
@@ -24,6 +29,15 @@ nextButton.addEventListener("click", () => {
     behavior: "smooth",
   });
 });
+// Add event listener to the slider container
+slider.addEventListener("click", function(event) {
+  if (event.target.tagName === "IMG") {
+    const id = event.target.id; 
+    ChangingBackGroundIMG(Number(id)); 
+  }
+});
+
+
 
 //   Async Methods
 async function GetTrendingData() {
@@ -60,9 +74,9 @@ async function UpdatingTrendingUi(){
   let content = "";
   for (let i = 0; i < result.length; i++) {
     content += `<img
-      class="w-36 h-52 rounded-lg hover:scale-105 transition-transform "
+      class="w-36 h-52 rounded-lg hover:scale-105 transition-transform cursor-pointer "
       src="${baseImageUrl}${result[i].poster_path}"
-      alt="Movie 1"
+      alt="Movie ${result[i]}"
       id ="${result[i].id}"
       
     />`;
@@ -74,15 +88,14 @@ async function UpdatingTrendingUi(){
   posterTitle.innerHTML =name;
   posterDetails.innerHTML= selectedItem.overview;
 
-  // Add event listener to the slider container
-  slider.addEventListener("click", function(event) {
-    if (event.target.tagName === "IMG") {
-      const id = event.target.id; 
-      ChangingBackGroundIMG(Number(id)); 
-    }
-  });
+  
  
 }
+
+
+
+    
+
 
 async function ChangingBackGroundIMG(id) {
   const result = await GetTrendingData();
@@ -97,3 +110,111 @@ async function ChangingBackGroundIMG(id) {
   } 
 }
 
+
+// Dropdown Lists with Pagination
+
+
+function getContent() {
+  const selected = dropDown.value;
+  const url = `https://api.themoviedb.org/3/trending/${selected}/day?language=en-US&page=${currentPage}&api_key=7a6dc1643bb88d4d0f2a43362f7cd9fc`;
+
+  const myHttp = new XMLHttpRequest();
+  myHttp.open("GET", url, true);
+  myHttp.send();
+
+  myHttp.addEventListener("readystatechange", function () {
+    if (myHttp.readyState === 4) {
+      if (myHttp.status === 200) {
+        list = JSON.parse(myHttp.responseText).results;
+        console.log("Fetched List:", list);
+        display();
+      } else {
+        console.error("Failed to fetch data:", myHttp.status, myHttp.statusText);
+      }
+    }
+  });
+}
+
+
+function display() {
+  const main = document.getElementById("movie-grid");
+  main.innerHTML = "";
+  let cartona = "";
+  for(var i=0 ; i<list.length;i++){
+    
+    cartona+=    `<div class="movie-card">
+     <img
+       src="${baseImageUrl}${list[i].poster_path?list[i].poster_path:list[i].profile_path}"
+       alt="Movie 1"
+     />
+     <h3>${list[i].original_title ? list[i].original_title : list[i].original_name}</h3>
+   </div>   ` 
+}
+    main.innerHTML = cartona;
+}
+
+dropDown.addEventListener("change", function (e) {
+  currentPage = 1;
+  let name;
+
+  switch (dropDown.value) {
+    case "all":
+      name = "All";
+      break;
+    case "movie":
+      name = "Movies";
+      break;
+    case "tv":
+      name = "Tv Shows";
+      break;
+    case "person":
+      name = "Persons";
+      break;
+    default:
+      name = "All"; 
+  }
+
+  document.getElementById("Popular-Lists").innerHTML = name;
+  getContent();
+});
+
+document.getElementById("next").addEventListener("click", function () {
+   
+  currentPage++;
+  getContent();
+});
+
+document.getElementById("prev").addEventListener("click", function () {
+  if (currentPage > 1) {
+    currentPage--;
+    getContent();
+  }
+});
+
+ inputSearch.addEventListener("input" , function(){
+  const query = inputSearch.value.toLowerCase();
+  const main = document.getElementById("movie-grid");
+  main.innerHTML = "";
+  let cartona = ``;
+
+  
+   
+      
+      const filteredData = list.filter(item => {
+        const name = item.original_title ? item.original_title : item.original_name;
+        return name.toLowerCase().startsWith(query);
+      });
+      
+      for(let i = 0 ; i<filteredData.length;i++){ 
+        cartona+=    `<div class="movie-card" id = "${filteredData[i].id}">
+     <img
+       src="${baseImageUrl}${filteredData[i].poster_path?filteredData[i].poster_path:filteredData[i].profile_path}"
+       alt="Movie 1"
+     />
+     <h3>${filteredData[i].original_title ? filteredData[i].original_title : filteredData[i].original_name}</h3>
+   </div>   ` 
+      
+      main.innerHTML = cartona;
+  }
+
+ })

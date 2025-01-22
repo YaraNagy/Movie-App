@@ -2,3 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+.custom-bg {
+    background-image: url('./images/light-space-darkness-darkness-wallpaper-preview.jpg');
+    background-size: cover;
+    background-position: center;
+  }
