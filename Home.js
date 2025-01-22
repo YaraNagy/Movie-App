@@ -153,8 +153,28 @@ function display() {
     main.innerHTML = cartona;
 }
 
-dropDown.addEventListener("change", function () {
+dropDown.addEventListener("change", function (e) {
   currentPage = 1;
+  let name;
+
+  switch (dropDown.value) {
+    case "all":
+      name = "All";
+      break;
+    case "movie":
+      name = "Movies";
+      break;
+    case "tv":
+      name = "Tv Shows";
+      break;
+    case "person":
+      name = "Persons";
+      break;
+    default:
+      name = "All"; 
+  }
+
+  document.getElementById("Popular-Lists").innerHTML = name;
   getContent();
 });
 
@@ -177,7 +197,7 @@ document.getElementById("prev").addEventListener("click", function () {
   main.innerHTML = "";
   let cartona = ``;
 
-  if (query) {
+  
    
       
       const filteredData = list.filter(item => {
@@ -185,15 +205,15 @@ document.getElementById("prev").addEventListener("click", function () {
         return name.toLowerCase().startsWith(query);
       });
       
-      for(let i = 0 ; i<filteredData.length;i++){
-        cartona+=    `<div class="movie-card">
+      for(let i = 0 ; i<filteredData.length;i++){ 
+        cartona+=    `<div class="movie-card" id = "${filteredData[i].id}">
      <img
        src="${baseImageUrl}${filteredData[i].poster_path?filteredData[i].poster_path:filteredData[i].profile_path}"
        alt="Movie 1"
      />
      <h3>${filteredData[i].original_title ? filteredData[i].original_title : filteredData[i].original_name}</h3>
    </div>   ` 
-      }
+      
       main.innerHTML = cartona;
   }
 

@@ -36,19 +36,23 @@
               <a href="#" class="text-yellow-500 hover:text-gray-300">Home</a>
             </li>
             <li>
-              <a href="#List-Section" class="text-yellow-500 hover:text-gray-300">Lists</a>
+              <a
+                href="#List-Section"
+                class="text-yellow-500 hover:text-gray-300"
+                >Lists</a
+              >
             </li>
           </ul>
           <ul class="flex space-x-6">
             <li>
-              <a href="#" class="text-yellow-500 hover:text-gray-300"
-                >About</a
-              >
+              <a href="contact.html" class="text-yellow-500 hover:text-gray-300"
+                >Contact
+              </a>
             </li>
             <li>
-              <a href="#" class="text-yellow-500 hover:text-gray-300"
-                >Contact </a
-              >
+              <a href="login.html" class="text-yellow-500 hover:text-gray-300"
+                >Login
+              </a>
             </li>
           </ul>
         </div>
@@ -118,7 +122,9 @@
 
     <!-- Movie Cards Section -->
     <section class="mt-4 px-8 sm:px-16 lg:px-32" id="List-Section">
-      <h2 class="text-yellow-500 text-2xl font-bold mb-4">Popular Movies</h2>
+      <h2 class="text-yellow-500 text-2xl font-bold mb-4">
+        Popular <span id="Popular-Lists">All</span>
+      </h2>
 
       <div class="mb-4 flex items-center justify-end space-x-8" id="sss">
         <!-- Search Component -->
@@ -148,123 +154,25 @@
         </div>
       </div>
 
-      <div class="movie-grid" id="movie-grid">
-        <!-- Movie Card 1 -->
-        <div class="movie-card">
-          <img
-            src="images/28600678f483e6cc2b2117ea3002658d.png"
-            alt="Movie 1"
-          />
-          <h3>Movie 1</h3>
-        </div>
-        <!-- Movie Card 2 -->
-        <div class="movie-card">
-          <img
-            src="images/28600678f483e6cc2b2117ea3002658d.png"
-            alt="Movie 2"
-          />
-          <h3>Movie 2</h3>
-        </div>
-        <!-- Movie Card 3 -->
-        <div class="movie-card">
-          <img
-            src="images/28600678f483e6cc2b2117ea3002658d.png"
-            alt="Movie 3"
-          />
-          <h3>Movie 3</h3>
-        </div>
-        <!-- Movie Card 4 -->
-        <div class="movie-card">
-          <img
-            src="images/28600678f483e6cc2b2117ea3002658d.png"
-            alt="Movie 4"
-          />
-          <h3>Movie 4</h3>
-        </div>
-        <!-- Movie Card 5 -->
-        <div class="movie-card">
-          <img
-            src="images/28600678f483e6cc2b2117ea3002658d.png"
-            alt="Movie 5"
-          />
-          <h3>Movie 5</h3>
-        </div>
-        <!-- Movie Card 6 -->
-        <div class="movie-card">
-          <img
-            src="images/28600678f483e6cc2b2117ea3002658d.png"
-            alt="Movie 6"
-          />
-          <h3>Movie 6</h3>
-        </div>
-        <!-- Movie Card 7 -->
-        <div class="movie-card">
-          <img
-            src="images/28600678f483e6cc2b2117ea3002658d.png"
-            alt="Movie 7"
-          />
-          <h3>Movie 7</h3>
-        </div>
-        <!-- Movie Card 8 -->
-        <div class="movie-card">
-          <img
-            src="images/28600678f483e6cc2b2117ea3002658d.png"
-            alt="Movie 8"
-          />
-          <h3>Movie 8</h3>
-        </div>
-        <!-- Movie Card 8 -->
-        <div class="movie-card">
-          <img
-            src="images/28600678f483e6cc2b2117ea3002658d.png"
-            alt="Movie 8"
-          />
-          <h3>Movie 8</h3>
-        </div>
-        <!-- Movie Card 8 -->
-        <div class="movie-card">
-          <img
-            src="images/28600678f483e6cc2b2117ea3002658d.png"
-            alt="Movie 8"
-          />
-          <h3>Movie 8</h3>
-        </div>
-        <!-- Movie Card 8 -->
-        <div class="movie-card">
-          <img
-            src="images/28600678f483e6cc2b2117ea3002658d.png"
-            alt="Movie 8"
-          />
-          <h3>Movie 8</h3>
-        </div>
-        <!-- Movie Card 8 -->
-        <div class="movie-card">
-          <img
-            src="images/28600678f483e6cc2b2117ea3002658d.png"
-            alt="Movie 8"
-          />
-          <h3>Movie 8</h3>
-        </div>
-      </div>
+      <div class="movie-grid" id="movie-grid"></div>
       <!-- Prev and Next Button -->
       <div class="flex justify-center space-x-8">
         <button
           class="bg-yellow-500 text-black px-6 py-3 rounded-md text-sm font-medium hover:bg-yellow-400 flex items-center"
           id="prev"
-          >
+        >
           <span class="material-icons text-sm"> arrow_back </span>
           <span>Prev</span>
         </button>
         <button
           class="bg-yellow-500 text-black px-6 py-3 rounded-md text-sm font-medium hover:bg-yellow-400 flex items-center"
           id="next"
-            >
+        >
           <span>Next</span>
-          <span class="material-icons text-sm "> arrow_forward </span>
+          <span class="material-icons text-sm"> arrow_forward </span>
         </button>
       </div>
     </section>
-    
   </body>
   <script src="Home.js"></script>
 </html>
