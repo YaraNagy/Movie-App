@@ -1,0 +1,1 @@
+const subBtn = document.getElementById("sun-btn");
