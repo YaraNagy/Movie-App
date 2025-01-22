@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5500/messages';
+const API_URL = 'http://localhost:5501/messages';
 const fName = document.getElementById("fname");
 const lName = document.getElementById("lname");
 const email = document.getElementById("email");
@@ -86,25 +86,25 @@ document.getElementById("contact-from").addEventListener("submit", function(e) {
         phoneNo.classList.remove("border-red-600");
     }
 
-    const data = {
-        fName: fNameValue,
-        lName: lNameValue,
-        email: emailValue,
-        phoneNo: phoneNoValue,
-        msg: msgValue
-    }
+    // const data = {
+    //     fName: fNameValue,
+    //     lName: lNameValue,
+    //     email: emailValue,
+    //     phoneNo: phoneNoValue,
+    //     msg: msgValue
+    // }
 
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', `${API_URL}`, true);
-    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            //console.log(xhr.responseText);
+    // const xhr = new XMLHttpRequest();
+    // xhr.open('GET', `${API_URL}`, true);
+    // xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    // xhr.onreadystatechange = function () {
+    //     if (xhr.readyState === 4) {
+    //         //console.log(xhr.responseText);
             
-            // if (xhr.status === 200) {
+    //         // if (xhr.status === 200) {
                 
-            // }
-        }
-    };
-    xhr.send(JSON.stringify(data));
+    //         // }
+    //     }
+    // };
+    // xhr.send(JSON.stringify(data));
 })
