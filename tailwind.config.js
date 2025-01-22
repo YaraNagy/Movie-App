@@ -6,9 +6,9 @@ module.exports = {
       backgroundImage: {
         contactBgImg: "url('/images/cinema.jpg')"
       },
-      } , 
+      
       colors: {
-        darkBlack: '#0A0A0A', // Custom color
+        "darkBlack": '#0A0A0A', // Custom color
          'custom-gray' :'#040711'
       },
     },
