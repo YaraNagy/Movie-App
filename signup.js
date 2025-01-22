@@ -6,7 +6,7 @@ function isValidEmail(email) {
 }
 
 function isValidPassword(password) {
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; 
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     return passwordRegex.test(password);
 }
 
@@ -15,7 +15,7 @@ function isNotEmpty(value) {
 }
 
 function isValidName(name) {
-    const nameRegex = /^[A-Za-z\s]+$/; 
+    const nameRegex = /^[A-Za-z\s]+$/;
     return nameRegex.test(name);
 }
 
@@ -70,21 +70,40 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
     }
 
     if (!valid) return;
+    const checkEmailXhr = new XMLHttpRequest();
+    checkEmailXhr.open('GET', `${API_URL}?email=${email}`, true);
+    checkEmailXhr.onreadystatechange = function () {
+        if (checkEmailXhr.readyState === 4) {
+            if (checkEmailXhr.status === 200) {
+                const users = JSON.parse(checkEmailXhr.responseText);
+                if (users.length > 0) {
+                    showAlert('Email already exists. Please use a different email.');
+                } else {
 
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', API_URL, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 201) {
-                showAlert('Sign up successful! Redirecting to login page.', true);
-                setTimeout(() => {
-                    window.location.href = 'login.html';
-                }, 1500);
-            } else {
-                showAlert('Error during sign-up process.');
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('POST', API_URL, true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 201) {
+                                const user = JSON.parse(xhr.responseText);
+                                showAlert('Sign up successful!', true);
+                                setTimeout(() => {
+                                    window.location.href = './login.html';
+                                }, 1500);
+                            } else {
+                                showAlert('Error during sign-up process.');
+                            }
+                        }
+                    };
+                    xhr.send(JSON.stringify({ name, email, password }));
+                }
+            }else{
+                showAlert('Error checking email availability.');
             }
         }
     };
-    xhr.send(JSON.stringify({ name, email, password }));
-});
+    
+    checkEmailXhr.send();
+                });
+
