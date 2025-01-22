@@ -5,6 +5,10 @@ module.exports = {
     extend: {
       backgroundImage: {
         contactBgImg: "url('/images/cinema.jpg')"
+      },
+      colors: {
+        'custom-gray' :'#040711'
+
       }
     },
     keyframes: {
