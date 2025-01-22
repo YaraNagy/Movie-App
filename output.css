@@ -1470,9 +1470,9 @@ video {
   }
 }
 
-#Trending-Movie {
+ #Trending-Movie {
 margin-bottom: 12px;
-}
+}  
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(6, 260px);
@@ -1502,6 +1502,5 @@ margin-bottom: 12px;
 
 #search-div {
   width: 281px;
-  /* margin-left: auto; */
-}
+} 
 
