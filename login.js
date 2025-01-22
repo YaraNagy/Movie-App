@@ -48,14 +48,17 @@ document.getElementById('login-form').addEventListener('submit', function (e) {
 
     const xhr = new XMLHttpRequest();
     xhr.open('GET', `${API_URL}?email=${email}&password=${password}`, true);
-    xhr.onreadystatechange = function () {
+    xhr.addEventListener('readystatechange', function () {
         if (xhr.readyState === 4) {
+            console.log('Status:', xhr.status); 
+            console.log('Response:', xhr.responseText); 
             if (xhr.status === 200) {
                 const users = JSON.parse(xhr.responseText);
                 if (users.length > 0) {
-                    showAlert('Login successful! Redirecting to home page.', true);
+                    localStorage.setItem('user', JSON.stringify(users[0]));
+                    showAlert('Login successful!', true);
                     setTimeout(() => {
-                        window.location.href = 'home.html';
+                        window.location.href = './Home.html';
                     }, 1500);
                 } else {
                     showAlert('Invalid email or password.');
@@ -64,6 +67,16 @@ document.getElementById('login-form').addEventListener('submit', function (e) {
                 showAlert('Error during login process.');
             }
         }
-    };
+    });
     xhr.send();
+});
+
+function logout() {
+    localStorage.removeItem('user');
+    window.location.href = './login.html';
+}
+
+document.getElementById('logout-link').addEventListener('click', function (e) {
+    e.preventDefault(); 
+    logout();
 });
