@@ -6,10 +6,11 @@ module.exports = {
       backgroundImage: {
         contactBgImg: "url('/images/cinema.jpg')"
       },
+      } , 
       colors: {
-        'custom-gray' :'#040711'
-
-      }
+        darkBlack: '#0A0A0A', // Custom color
+         'custom-gray' :'#040711'
+      },
     },
     keyframes: {
       slideInFromLeft: {
