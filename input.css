@@ -19,6 +19,7 @@
     gap: 16px;
     padding: 16px;
     justify-content: center;
+    position: relative;
   }
   .movie-card {
     background: #1a1a1a;
