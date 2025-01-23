@@ -1,5 +1,6 @@
 const params = new URLSearchParams(window.location.search);
 const movieId = params.get('id');
+
 var data;
 var similarMovies;
 var container = document.getElementById('container')
@@ -89,7 +90,7 @@ function displaySimilar() {
         const movie = similarMovies.results[i];
         const imgt = `${posterBaseURL}${movie.poster_path}`;
         bl7 += `
-            
+                
                 <div class="item" onclick="appearData(${movie.id})">
              
                     <img src="${imgt}" alt="${movie.title}" />
@@ -127,15 +128,19 @@ function display() {
                 <p>${data.overview}</p>
             </div>
 
-            <button class="btn-watch" onclick="playVideo()">
-            <span class="material-icons">play_arrow</span>
-                Watch movie
-            </button>
-            
-            <button class="btn-trailer">
-            <span class="material-icons">videocam</span> Video
-               Tailer
-            </button>
+          <button class="btn-watch onclick="playVideo()" >
+    <div class="displaybtn">
+    <span class="material-icons">play_arrow</span>
+        <h3>Watch series </h3>
+        </div>
+    </button>
+    
+    <button class="btn-trailer">
+    <div class="displaybtn">
+    <span class="material-icons">videocam</span> 
+       <h3>Trailer </h3>
+        </div>
+    </button>
             
         </div>
         

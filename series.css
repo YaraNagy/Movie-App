@@ -6,7 +6,19 @@
     margin: 0px;
     color: white;
 }
+.btns{
+    text-align: center;
 
+}
+.mybtn{
+    margin-top: 5px;
+   background-color: rgba(128, 128, 128, 0.1);
+    padding: 10px;
+    border: rgb(196, 23, 23);
+    border-radius: 20%;
+    margin-left: 10px;
+    cursor: pointer;
+}
 body{
     background-color: black;
     position: relative;
@@ -27,21 +39,8 @@ nav{
 .visible{
     display: block;
 }
-.buttons{
-    position: relative;
-    z-index: 999999;
-    text-align: center;
-   
-}
-.btntop{
-    padding:10px;
-    color: white;
-    cursor: pointer;
-    background-color: transparent;
-    border-radius: 5px;
-    margin-right: 5px;
-    
-}
+
+
 .description{
     padding: 20px;
     margin-bottom: 25px;
@@ -116,10 +115,6 @@ nav{
 .btn-trailer:hover{
     transform: scale(105%);
 }
-.displaybtn{
-    display: flex;
-    flex-wrap: wrap;
-}
 
 .grid {
 
@@ -184,7 +179,11 @@ nav{
 
 .arrow button:hover {
     background: rgba(128, 128, 128, 0.8);
-    color: #ff5722; /* Optional hover effect */
+    
+}
+.mybtn:hover {
+    background: rgba(128, 128, 128, 0.8);
+    
 }
 
 .video-overlay {
@@ -213,3 +212,78 @@ nav{
     z-index: 10000;
 }
 
+.seasoncategory{
+    padding: 20px;
+    margin-bottom: 25px;
+    position: absolute;
+
+    margin-left: 30px;
+    line-height: 40px;
+    top: 30px;
+  width: 92%;
+    margin-top: 5%;
+}
+.seasoncategory h1{
+    font-size: 50px;
+    margin-left: 20px;
+}
+.seasondiv{
+
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.seasonname{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1px;
+}
+.seasonname h3{
+    justify-content: center;
+    cursor: pointer;
+    margin: 0px 5px; 
+    padding: 0px 10px;
+    text-align: center;
+    transition: 1s;
+    border-radius: 20%;
+
+}
+.displaybtn{
+    display: flex;
+    flex-wrap: wrap;
+}
+.seasonname h3:hover{
+    
+
+    transform: scale(1.1);
+}
+#seasonname h3.selected {
+    border: 2px solid gray;
+    background-color: lightgray;
+    color: black;
+}
+.episodes{
+   
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: auto;
+   padding: 5px;
+}
+.episodeitem{
+    width: 24%;
+    text-align: center;
+    transition: all 1s;
+    height: 10%;
+}
+.episodeitem img{
+    width: 100%;
+}
+.episodeitem h3{
+    font-size: 30px;
+}
+.episodeitem:hover{
+    transform: scale(1.1);
+
+}

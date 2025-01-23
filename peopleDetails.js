@@ -1,4 +1,4 @@
-var id=1190668
+var id=224513
 actor(id, function () {
     displayMovies(id, function () {
         displaytv(id, function () {
@@ -75,7 +75,7 @@ function displayactor(){
     for(var i=0;i<10;i++){
         if(datamovie.cast[i].poster_path){
         const movieurl = `${profileUrlBath}${datamovie.cast[i].poster_path}`;
-        const movieId = datamovie.cast[i].id;
+        var movieId = datamovie.cast[i].id;
         bl7+=`
             
             <div class="movieitem" onclick="navigateToDetails(${movieId})">
@@ -90,9 +90,10 @@ function displayactor(){
     for(var i=0;i<10;i++){
         if(tvmovie.cast[i].poster_path){
         const tvurl = `${profileUrlBath}${tvmovie.cast[i].poster_path}`;
+        var tvid=tvmovie.cast[i].id;
         cont+=`
             
-            <div class="movieitem">
+            <div class="movieitem" onclick="navigateToTvDetails(${tvid})">
                 <img src="${tvurl}">
             </div>
         `
@@ -103,4 +104,7 @@ function displayactor(){
 
 function navigateToDetails(id) {
     window.location.href = `details.html?id=${id}`; 
+}
+function navigateToTvDetails(id){
+    window.location.href=`series.html?id=${id}`;
 }
