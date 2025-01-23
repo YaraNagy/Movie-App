@@ -1,5 +1,5 @@
 const API_URL = 'http://localhost:3000/users';
-
+// Validation
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -8,7 +8,7 @@ function isValidEmail(email) {
 function isNotEmpty(value) {
     return value.trim() !== '';
 }
-
+// Alert Function
 function showAlert(message, isSuccess = false) {
     const alertBox = document.getElementById('login-alert');
     alertBox.textContent = message;
@@ -45,7 +45,7 @@ document.getElementById('login-form').addEventListener('submit', function (e) {
     }
 
     if (!valid) return;
-
+// create request 
     const xhr = new XMLHttpRequest();
     xhr.open('GET', `${API_URL}?email=${email}&password=${password}`, true);
     xhr.addEventListener('readystatechange', function () {
@@ -71,6 +71,7 @@ document.getElementById('login-form').addEventListener('submit', function (e) {
     xhr.send();
 });
 
+//Logout Function
 function logout() {
     localStorage.removeItem('user');
     window.location.href = './login.html';
