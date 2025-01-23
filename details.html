@@ -4,28 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="details.css">
+    <title>Details</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./output.css">
 
 </head>
 
-<body>
-    <nav>
-        <h3>hello</h3>
-        <h3>hello</h3>
-    </nav>
-  
-    <div id="container" class="container ">
-    </div>
+<body class="bg-black text-white">
+    <nav class=" relative z-20 flex justify-between items-center p-4">
+        <!-- Left side  -->
+        <div class="flex items-center text-yellow-500 text-xl">
+          <div>
+            <span
+              class="border-1 border-solid border-black bg-yellow-500 p-2 rounded-lg text-black font-bold"
+              >Star</span
+            >
+            Movie
+          </div>
+        </div>
 
+        <!-- Right side with the lists -->
+        <div class="flex space-x-8">
+          <ul class="flex space-x-6">
+            <li>
+              <a href="Home.html" class="text-yellow-500 hover:text-gray-300">Home</a>
+            </li>
+            <li>
+              <a
+                href="#List-Section"
+                class="text-yellow-500 hover:text-gray-300"
+                >Lists</a
+              >
+            </li>
+          </ul>
+          <ul class="flex space-x-6">
+            <li>
+              <a href="contact.html" class="text-yellow-500 hover:text-gray-300"
+                >Contact
+              </a>
+            </li>
+            <li>
+              <a href="login.html" id="logout-link" class="text-yellow-500 hover:text-gray-300">Logout
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-    <div class="details">
-    </div>
-    
-   
+    <div id="container" class="container h-screen bg-cover bg-center bg-no-repeat"></div>
 
-    </div>
     <script src="details.js"></script>
 </body>
 
