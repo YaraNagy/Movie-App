@@ -1,4 +1,5 @@
-var id = 224513;
+const params = new URLSearchParams(window.location.search);
+var id = params.get('id');
 actor(id, function () {
     displayMovies(id, function () {
         displaytv(id, function () {
