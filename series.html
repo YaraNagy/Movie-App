@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Series</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./output.css">
+</head>
+
+<body class="bg-black text-white">
+    <nav class=" relative z-20 flex justify-between items-center p-4">
+        <!-- Left side  -->
+        <div class="flex items-center text-yellow-500 text-xl">
+          <div>
+            <span
+              class="border-1 border-solid border-black bg-yellow-500 p-2 rounded-lg text-black font-bold"
+              >Star</span
+            >
+            Movie
+          </div>
+        </div>
+
+        <!-- Right side with the lists -->
+        <div class="flex space-x-8">
+          <ul class="flex space-x-6">
+            <li>
+              <a href="Home.html" class="text-yellow-500 hover:text-gray-300">Home</a>
+            </li>
+            <li>
+              <a
+                href="#List-Section"
+                class="text-yellow-500 hover:text-gray-300"
+                >Lists</a
+              >
+            </li>
+          </ul>
+          <ul class="flex space-x-6">
+            <li>
+              <a href="contact.html" class="text-yellow-500 hover:text-gray-300"
+                >Contact
+              </a>
+            </li>
+            <li>
+              <a href="login.html" id="logout-link" class="text-yellow-500 hover:text-gray-300">Logout
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+    <div class="text-center">
+        <button id="firstbtn" class="mybtn bg-gray-800 text-white px-4 py-2 rounded-lg m-2 cursor-pointer hover:bg-gray-700">About tv series</button>
+        <button id="secondbtn" class="mybtn bg-gray-800 text-white px-4 py-2 rounded-lg m-2 cursor-pointer hover:bg-gray-700">Seasons and Episodes</button>
+    </div>
+
+    <div id="container" class="container h-screen bg-cover bg-center bg-no-repeat visible"></div>
+
+    <div id="seasoncategory" class="seasoncategory hidden absolute top-8 left-8 w-11/12 mt-12 p-5">
+        <h1 class="text-5xl ml-5">${data.original_name}</h1>
+        <div class="seasondiv p-8 flex flex-wrap">
+            <div>
+                <h2 class="mr-5 text-2xl">Seasons</h2>
+            </div>
+            <div id="seasonname" class="seasonname flex flex-wrap mt-1 gap-2"></div>
+        </div>
+        <div id="episodes" class="episodes mt-8 flex flex-wrap gap-5 p-5">
+            <!-- Episodes will be rendered here -->
+        </div>
+    </div>
+
+    <script src="series.js"></script>
+</body>
+
+</html>
