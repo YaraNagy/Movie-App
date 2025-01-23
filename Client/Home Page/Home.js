@@ -264,11 +264,11 @@ function hideLoading() {
 }
 function switching(id , dataType){
   if(dataType == "movie")
-    window.location.href = `details.html?id=${id}`
+    window.location.href = `../Movie-Details Page/details.html?id=${id}`
   if(dataType == "tv")
-    window.location.href = `series.html?id=${id}`
+    window.location.href = `../Movie-Details Page/series.html?id=${id}`
   if(dataType == "person")
-    window.location.href = `peopleDetails.html?id=${id}`
+    window.location.href = `../Movie-Details Page/peopleDetails.html?id=${id}`
 }
 
 

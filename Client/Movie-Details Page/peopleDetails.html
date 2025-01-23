@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Details</title>
+    <title>peopleDetails</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="./output.css">
+    <link rel="stylesheet" href="../../styles/output.css">
 
 </head>
 
@@ -27,11 +27,11 @@
         <div class="flex space-x-8">
           <ul class="flex space-x-6">
             <li>
-              <a href="Home.html" class="text-yellow-500 hover:text-gray-300">Home</a>
+              <a href="../Home Page/Home.html" class="text-yellow-500 hover:text-gray-300">Home</a>
             </li>
             <li>
               <a
-                href="#List-Section"
+                href="../Home Page/Home.html"
                 class="text-yellow-500 hover:text-gray-300"
                 >Lists</a
               >
@@ -39,21 +39,30 @@
           </ul>
           <ul class="flex space-x-6">
             <li>
-              <a href="contact.html" class="text-yellow-500 hover:text-gray-300"
+              <a href="../Contact Page/contact.html" class="text-yellow-500 hover:text-gray-300"
                 >Contact
               </a>
             </li>
             <li>
-              <a href="login.html" id="logout-link" class="text-yellow-500 hover:text-gray-300">Logout
+              <a href="../Login Page/login.html" id="logout-link" class="text-yellow-500 hover:text-gray-300">Logout
               </a>
             </li>
           </ul>
         </div>
       </nav>
+    <div class="container mt-12 p-10" id="container"></div>
 
-    <div id="container" class="container h-screen bg-cover bg-center bg-no-repeat"></div>
+    <div class="movies mt-8">
+        <h2 class="text-3xl ml-8">Movies</h2>
+        <div class="movies-container flex flex-wrap gap-5 p-8 justify-center" id="movies-container"></div>
+    </div>
 
-    <script src="details.js"></script>
+    <div class="series mt-8">
+        <h2 class="text-3xl ml-8">Series</h2>
+        <div class="movies-container flex flex-wrap gap-5 p-8 justify-center" id="tv-container"></div>
+    </div>
+
+    <script src="peopleDetails.js"></script>
 </body>
 
 </html>
