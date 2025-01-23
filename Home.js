@@ -12,6 +12,7 @@ var dataType;
 var currentPage = 1;
 var list = [];
 let data;
+var id ;
 
 UpdatingTrendingUi();
 getContent();
@@ -34,11 +35,30 @@ nextButton.addEventListener("click", () => {
 slider.addEventListener("click", function (event) {
   console.log(event.target);
   if (event.target.tagName === "IMG") {
-    const id = event.target.id;
+     id = event.target.id;
     ChangingBackGroundIMG(Number(id));
     dataType = event.target.dataset.type;
   }
 });
+
+document.getElementById("Watch-btn").addEventListener("click" , function(){
+ switching(id ,dataType);
+})
+document.getElementById("Trailer-btn").addEventListener("click" , function(){
+ switching(id ,dataType);
+})
+const main = document.getElementById("movie-grid");
+main.addEventListener("click", function(event) {
+  if (event.target.closest(".movie-card")) {
+    const card = event.target.closest(".movie-card");
+    const id = card.id;
+    const dataType = card.getAttribute("data-type");
+    switching(id, dataType);
+  }
+});
+
+
+
 
 //   Async Methods
 async function GetTrendingData() {
@@ -83,7 +103,7 @@ async function UpdatingTrendingUi() {
     />`;
   }
   slider.innerHTML = content;
-  let selectedItem = result[2];
+  let selectedItem = result[0];
   let name = selectedItem.title ? selectedItem.title : selectedItem.name;
   trendingSection.style.backgroundImage = `url('${baseImageUrl}${selectedItem.backdrop_path}')`;
   posterTitle.innerHTML = name;
@@ -136,7 +156,7 @@ function display() {
   main.innerHTML = "";
   let cartona = "";
   for (var i = 0; i < list.length; i++) {
-    cartona += `<div class="movie-card ">
+    cartona += `<div class="movie-card" id ="${list[i].id}" data-type = "${list[i].media_type}">
      <img
        src="${baseImageUrl}${
       list[i].poster_path ? list[i].poster_path : list[i].profile_path
@@ -149,6 +169,15 @@ function display() {
    </div>   `;
   }
   main.innerHTML = cartona;
+  main.addEventListener("click", function(event) {
+    
+    if (event.target.closest(".movie-card")) {
+      const card = event.target.closest(".movie-card");
+      const id = card.id;
+      const dataType = card.getAttribute("data-type");
+      switching(id, dataType);
+    }
+  })  
 }
 
 dropDown.addEventListener("change", function (e) {
@@ -194,7 +223,7 @@ inputSearch.addEventListener("input", function () {
   showLoading();
   const query = inputSearch.value.toLowerCase();
   const main = document.getElementById("movie-grid");
-  main.innerHTML = "";
+  main.innerHTML = ""; // Clear current content
   let cartona = ``;
 
   const filteredData = list.filter((item) => {
@@ -203,25 +232,24 @@ inputSearch.addEventListener("input", function () {
   });
 
   for (let i = 0; i < filteredData.length; i++) {
-    cartona += `<div class="movie-card" id = "${filteredData[i].id}">
-     <img
-       src="${baseImageUrl}${
-      filteredData[i].poster_path
-        ? filteredData[i].poster_path
-        : filteredData[i].profile_path
-    }"
-       alt="Movie 1"
-     />
-     <h3>${
-       filteredData[i].original_title
-         ? filteredData[i].original_title
-         : filteredData[i].original_name
-     }</h3>
-   </div>   `;
-
-    main.innerHTML = cartona;
-    hideLoading();
+    cartona += `<div class="movie-card" id="${filteredData[i].id}" data-type="${filteredData[i].media_type}">
+      <img
+        src="${baseImageUrl}${
+          filteredData[i].poster_path
+            ? filteredData[i].poster_path
+            : filteredData[i].profile_path
+        }"
+        alt="Movie 1"
+      />
+      <h3>${
+        filteredData[i].original_title
+          ? filteredData[i].original_title
+          : filteredData[i].original_name
+      }</h3>
+    </div>`;
   }
+  main.innerHTML = cartona; // Update movie grid with the filtered cards
+  hideLoading();
 });
 // loading
 
@@ -233,6 +261,14 @@ function showLoading() {
 function hideLoading() {
   const spinner = document.getElementById("loading-spinner");
   spinner.classList.add("hidden");
+}
+function switching(id , dataType){
+  if(dataType == "movie")
+    window.location.href = `details.html?id=${id}`
+  if(dataType == "tv")
+    window.location.href = `series.html?id=${id}`
+  if(dataType == "person")
+    window.location.href = `peopleDetails.html?id=${id}`
 }
 
 
