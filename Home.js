@@ -10,7 +10,7 @@ const dropDown = document.getElementById("darkModeSelect");
 const inputSearch = document.getElementById("searchBar");
 var currentPage = 1;
 var list = [];
-let data ;
+let data;
 
 UpdatingTrendingUi();
 getContent();
@@ -30,14 +30,12 @@ nextButton.addEventListener("click", () => {
   });
 });
 // Add event listener to the slider container
-slider.addEventListener("click", function(event) {
+slider.addEventListener("click", function (event) {
   if (event.target.tagName === "IMG") {
-    const id = event.target.id; 
-    ChangingBackGroundIMG(Number(id)); 
+    const id = event.target.id;
+    ChangingBackGroundIMG(Number(id));
   }
 });
-
-
 
 //   Async Methods
 async function GetTrendingData() {
@@ -54,7 +52,7 @@ async function GetTrendingData() {
     "https://api.themoviedb.org/3/trending/all/day?language=en-US",
     options
   );
-  
+
   try {
     if (!response.ok) {
       throw new Error(`HTTP error! ${response.status}`);
@@ -64,11 +62,10 @@ async function GetTrendingData() {
   } catch (error) {
     console.error("Error", error);
   }
-  
-  
+
   return data?.results || [];
 }
-async function UpdatingTrendingUi(){
+async function UpdatingTrendingUi() {
   let result = await GetTrendingData();
   slider.innerHTML = "";
   let content = "";
@@ -85,34 +82,23 @@ async function UpdatingTrendingUi(){
   let selectedItem = result[2];
   let name = selectedItem.title ? selectedItem.title : selectedItem.name;
   trendingSection.style.backgroundImage = `url('${baseImageUrl}${selectedItem.backdrop_path}')`;
-  posterTitle.innerHTML =name;
-  posterDetails.innerHTML= selectedItem.overview;
-
-  
- 
+  posterTitle.innerHTML = name;
+  posterDetails.innerHTML = selectedItem.overview;
 }
-
-
-
-    
-
 
 async function ChangingBackGroundIMG(id) {
   const result = await GetTrendingData();
 
-  const selectedItem = result.find((item) => item.id === id); 
+  const selectedItem = result.find((item) => item.id === id);
   if (selectedItem) {
     let name = selectedItem.title ? selectedItem.title : selectedItem.name;
     trendingSection.style.backgroundImage = `url('${baseImageUrl}${selectedItem.backdrop_path}')`;
-    posterTitle.innerHTML =name;
-    posterDetails.innerHTML= selectedItem.overview;
-
-  } 
+    posterTitle.innerHTML = name;
+    posterDetails.innerHTML = selectedItem.overview;
+  }
 }
 
-
 // Dropdown Lists with Pagination
-
 
 function getContent() {
   const selected = dropDown.value;
@@ -129,28 +115,34 @@ function getContent() {
         console.log("Fetched List:", list);
         display();
       } else {
-        console.error("Failed to fetch data:", myHttp.status, myHttp.statusText);
+        console.error(
+          "Failed to fetch data:",
+          myHttp.status,
+          myHttp.statusText
+        );
       }
     }
   });
 }
 
-
 function display() {
   const main = document.getElementById("movie-grid");
   main.innerHTML = "";
   let cartona = "";
-  for(var i=0 ; i<list.length;i++){
-    
-    cartona+=    `<div class="movie-card">
+  for (var i = 0; i < list.length; i++) {
+    cartona += `<div class="movie-card">
      <img
-       src="${baseImageUrl}${list[i].poster_path?list[i].poster_path:list[i].profile_path}"
+       src="${baseImageUrl}${
+      list[i].poster_path ? list[i].poster_path : list[i].profile_path
+    }"
        alt="Movie 1"
      />
-     <h3>${list[i].original_title ? list[i].original_title : list[i].original_name}</h3>
-   </div>   ` 
-}
-    main.innerHTML = cartona;
+     <h3>${
+       list[i].original_title ? list[i].original_title : list[i].original_name
+     }</h3>
+   </div>   `;
+  }
+  main.innerHTML = cartona;
 }
 
 dropDown.addEventListener("change", function (e) {
@@ -171,7 +163,7 @@ dropDown.addEventListener("change", function (e) {
       name = "Persons";
       break;
     default:
-      name = "All"; 
+      name = "All";
   }
 
   document.getElementById("Popular-Lists").innerHTML = name;
@@ -179,7 +171,6 @@ dropDown.addEventListener("change", function (e) {
 });
 
 document.getElementById("next").addEventListener("click", function () {
-   
   currentPage++;
   getContent();
 });
@@ -191,30 +182,34 @@ document.getElementById("prev").addEventListener("click", function () {
   }
 });
 
- inputSearch.addEventListener("input" , function(){
+inputSearch.addEventListener("input", function () {
   const query = inputSearch.value.toLowerCase();
   const main = document.getElementById("movie-grid");
   main.innerHTML = "";
   let cartona = ``;
 
-  
-   
-      
-      const filteredData = list.filter(item => {
-        const name = item.original_title ? item.original_title : item.original_name;
-        return name.toLowerCase().startsWith(query);
-      });
-      
-      for(let i = 0 ; i<filteredData.length;i++){ 
-        cartona+=    `<div class="movie-card" id = "${filteredData[i].id}">
+  const filteredData = list.filter((item) => {
+    const name = item.original_title ? item.original_title : item.original_name;
+    return name.toLowerCase().startsWith(query);
+  });
+
+  for (let i = 0; i < filteredData.length; i++) {
+    cartona += `<div class="movie-card" id = "${filteredData[i].id}">
      <img
-       src="${baseImageUrl}${filteredData[i].poster_path?filteredData[i].poster_path:filteredData[i].profile_path}"
+       src="${baseImageUrl}${
+      filteredData[i].poster_path
+        ? filteredData[i].poster_path
+        : filteredData[i].profile_path
+    }"
        alt="Movie 1"
      />
-     <h3>${filteredData[i].original_title ? filteredData[i].original_title : filteredData[i].original_name}</h3>
-   </div>   ` 
-      
-      main.innerHTML = cartona;
-  }
+     <h3>${
+       filteredData[i].original_title
+         ? filteredData[i].original_title
+         : filteredData[i].original_name
+     }</h3>
+   </div>   `;
 
- })
+    main.innerHTML = cartona;
+  }
+});
