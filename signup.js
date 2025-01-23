@@ -1,5 +1,5 @@
 const API_URL = 'http://localhost:3000/users';
-
+// Validation
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -18,7 +18,7 @@ function isValidName(name) {
     const nameRegex = /^[A-Za-z\s]+$/;
     return nameRegex.test(name);
 }
-
+// Alert Function
 function showAlert(message, isSuccess = false) {
     const alertBox = document.getElementById('signup-alert');
     alertBox.textContent = message;
