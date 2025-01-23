@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5501/users';
+const API_URL = 'http://localhost:3000/users';
 // Validation
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
