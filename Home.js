@@ -101,6 +101,7 @@ async function ChangingBackGroundIMG(id) {
 // Dropdown Lists with Pagination
 
 function getContent() {
+  showLoading(); 
   const selected = dropDown.value;
   const url = `https://api.themoviedb.org/3/trending/${selected}/day?language=en-US&page=${currentPage}&api_key=7a6dc1643bb88d4d0f2a43362f7cd9fc`;
 
@@ -121,6 +122,7 @@ function getContent() {
           myHttp.statusText
         );
       }
+      hideLoading();
     }
   });
 }
@@ -130,7 +132,7 @@ function display() {
   main.innerHTML = "";
   let cartona = "";
   for (var i = 0; i < list.length; i++) {
-    cartona += `<div class="movie-card">
+    cartona += `<div class="movie-card ">
      <img
        src="${baseImageUrl}${
       list[i].poster_path ? list[i].poster_path : list[i].profile_path
@@ -171,18 +173,21 @@ dropDown.addEventListener("change", function (e) {
 });
 
 document.getElementById("next").addEventListener("click", function () {
+  showLoading(); 
   currentPage++;
   getContent();
 });
 
 document.getElementById("prev").addEventListener("click", function () {
   if (currentPage > 1) {
+    showLoading(); 
     currentPage--;
     getContent();
   }
 });
 
 inputSearch.addEventListener("input", function () {
+  showLoading();
   const query = inputSearch.value.toLowerCase();
   const main = document.getElementById("movie-grid");
   main.innerHTML = "";
@@ -211,5 +216,20 @@ inputSearch.addEventListener("input", function () {
    </div>   `;
 
     main.innerHTML = cartona;
+    hideLoading();
   }
 });
+// loading
+
+function showLoading() {
+  const spinner = document.getElementById("loading-spinner");
+  spinner.classList.remove("hidden");
+}
+
+function hideLoading() {
+  const spinner = document.getElementById("loading-spinner");
+  spinner.classList.add("hidden");
+}
+
+
+
