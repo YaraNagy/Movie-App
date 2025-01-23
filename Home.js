@@ -8,6 +8,7 @@ const posterTitle = document.getElementById("poster-title");
 const posterDetails = document.getElementById("poster-details");
 const dropDown = document.getElementById("darkModeSelect");
 const inputSearch = document.getElementById("searchBar");
+var dataType;
 var currentPage = 1;
 var list = [];
 let data;
@@ -31,9 +32,11 @@ nextButton.addEventListener("click", () => {
 });
 // Add event listener to the slider container
 slider.addEventListener("click", function (event) {
+  console.log(event.target);
   if (event.target.tagName === "IMG") {
     const id = event.target.id;
     ChangingBackGroundIMG(Number(id));
+    dataType = event.target.dataset.type;
   }
 });
 
@@ -75,6 +78,7 @@ async function UpdatingTrendingUi() {
       src="${baseImageUrl}${result[i].poster_path}"
       alt="Movie ${result[i]}"
       id ="${result[i].id}"
+      data-type = "${result[i].media_type}"
       
     />`;
   }
