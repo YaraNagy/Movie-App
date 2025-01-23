@@ -4,7 +4,7 @@ const lName = document.getElementById("lname");
 const email = document.getElementById("email");
 const phoneNo = document.getElementById("phone-no");
 const msg = document.getElementById("msg");
-const subBtn = document.getElementById("sun-btn");
+const subBtn = document.getElementById("sub-btn");
 
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
