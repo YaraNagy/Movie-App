@@ -47,8 +47,9 @@ document.getElementById("Watch-btn").addEventListener("click" , function(){
 document.getElementById("Trailer-btn").addEventListener("click" , function(){
  switching(id ,dataType);
 })
-const main = document.getElementById("movie-grid");
-main.addEventListener("click", function(event) {
+
+ document.getElementById("movie-grid").addEventListener("click", function(event) 
+ {
   if (event.target.closest(".movie-card")) {
     const card = event.target.closest(".movie-card");
     const id = card.id;
@@ -223,7 +224,7 @@ inputSearch.addEventListener("input", function () {
   showLoading();
   const query = inputSearch.value.toLowerCase();
   const main = document.getElementById("movie-grid");
-  main.innerHTML = ""; // Clear current content
+  main.innerHTML = ""; 
   let cartona = ``;
 
   const filteredData = list.filter((item) => {
@@ -248,7 +249,7 @@ inputSearch.addEventListener("input", function () {
       }</h3>
     </div>`;
   }
-  main.innerHTML = cartona; // Update movie grid with the filtered cards
+  main.innerHTML = cartona; 
   hideLoading();
 });
 // loading
