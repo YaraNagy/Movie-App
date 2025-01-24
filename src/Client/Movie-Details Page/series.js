@@ -51,6 +51,7 @@ function seasons(callback) {
 }
 
 function episodes(id, seasonid) {
+    showLoading();
     const posterUrlBath = "https://image.tmdb.org/t/p/original";
     var episodesData = new XMLHttpRequest();
     episodesData.open('Get', `https://api.themoviedb.org/3/tv/${id}/season/${seasonid}?api_key=e7d001ee43b59aa8b31db205ff339b83`);
@@ -77,11 +78,13 @@ function episodes(id, seasonid) {
                 `;
             }
             document.getElementById('episodes').innerHTML = cartona;
+            hideLoading();
         }
     });
 }
 
 function gettv(id, callback) {
+    showLoading();
     var tvseries = new XMLHttpRequest();
     tvseries.open('Get', `https://api.themoviedb.org/3/tv/${id}?api_key=e7d001ee43b59aa8b31db205ff339b83`);
     tvseries.send();
@@ -90,6 +93,7 @@ function gettv(id, callback) {
             data = JSON.parse(tvseries.response);
             console.log(data);
             callback();
+            hideLoading();
         }
     });
 }
@@ -194,13 +198,22 @@ function displaydata() {
 function loadMore() {
     if (currentIndex + 3 < dataSimilar.results.length) {
         currentIndex += 3; 
-        display(); 
+        displaydata(); 
     }
 }
 
 function loadPrev() {
     if (currentIndex - 3 >= 0) {
         currentIndex -= 3;
-        display();
+        displaydata();
     }
 }
+function showLoading() {
+    const spinner = document.getElementById("loading-spinner");
+    spinner.classList.remove("hidden");
+  }
+  
+  function hideLoading() {
+    const spinner = document.getElementById("loading-spinner");
+    spinner.classList.add("hidden");
+  }

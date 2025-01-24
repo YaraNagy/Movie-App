@@ -13,6 +13,7 @@ var datamovie = '';
 var tvmovie = '';
 
 function actor(id, callback) {
+    showLoading();
     var myactor = new XMLHttpRequest();
     myactor.open('Get', `https://api.themoviedb.org/3/person/${id}?api_key=e7d001ee43b59aa8b31db205ff339b83`);
     myactor.send();
@@ -20,11 +21,13 @@ function actor(id, callback) {
         if (myactor.readyState == 4) {
             data = JSON.parse(myactor.response);
             callback();
+            hideLoading();
         }
     });
 }
 
 function displayMovies(id, callback) {
+    showLoading();
     var mymovies = new XMLHttpRequest();
     mymovies.open('Get', `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=e7d001ee43b59aa8b31db205ff339b83`);
     mymovies.send();
@@ -33,11 +36,13 @@ function displayMovies(id, callback) {
             datamovie = JSON.parse(mymovies.response);
             console.log(datamovie);
             callback();
+            hideLoading();
         }
     });
 }
 
 function displaytv(id, callback) {
+    showLoading();
     var mytv = new XMLHttpRequest();
     mytv.open('Get', `https://api.themoviedb.org/3/person/${id}/tv_credits?api_key=e7d001ee43b59aa8b31db205ff339b83`);
     mytv.send();
@@ -46,6 +51,7 @@ function displaytv(id, callback) {
             tvmovie = JSON.parse(mytv.response);
             console.log(tvmovie);
             callback();
+            hideLoading();
         }
     });
 }
@@ -111,3 +117,13 @@ function navigateToDetails(id) {
 function navigateToTvDetails(id) {
     window.location.href = `series.html?id=${id}`;
 }
+
+function showLoading() {
+    const spinner = document.getElementById("loading-spinner");
+    spinner.classList.remove("hidden");
+  }
+  
+  function hideLoading() {
+    const spinner = document.getElementById("loading-spinner");
+    spinner.classList.add("hidden");
+  }

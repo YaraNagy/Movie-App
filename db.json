@@ -23,7 +23,12 @@
       "name": "test",
       "email": "test@yahoo.com",
       "password": "test1234"
+    },
+    {
+      "id": "19fd",
+      "name": "tests",
+      "email": "test1@yahoo.com",
+      "password": "test1234567"
     }
-  ] 
-
+  ]
 }

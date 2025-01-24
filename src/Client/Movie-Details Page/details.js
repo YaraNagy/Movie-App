@@ -10,6 +10,7 @@ var videoKey = '';
 appearData(movieId);
 
 function appearData(id) {
+    showLoading(); 
     var myhhtp = new XMLHttpRequest();
     myhhtp.open('Get', `https://api.themoviedb.org/3/movie/${id}?api_key=e7d001ee43b59aa8b31db205ff339b83`);
     myhhtp.send();
@@ -21,11 +22,13 @@ function appearData(id) {
 
             similar(id, display);
             appearVideo(id);
+            hideLoading();
         }
     });
 }
 
 function appearVideo(id) {
+    showLoading();
     var videoReuest = new XMLHttpRequest();
     videoReuest.open('Get', `https://api.themoviedb.org/3/movie/${id}/videos?api_key=e7d001ee43b59aa8b31db205ff339b83`);
     videoReuest.send();
@@ -34,6 +37,7 @@ function appearVideo(id) {
             var videoo = JSON.parse(videoReuest.response);
             videoKey = videoo.results[0].key;
             console.log("Video Key:", videoKey);
+            hideLoading();
         }
     });
 }
@@ -138,8 +142,8 @@ function display() {
             <h3 class="text-4xl ml-8">Similar</h3>
             <div class="grids-item flex flex-wrap gap-5 p-8 relative">
                 <div class="arrow absolute top-1/2 right-16 z-50">
-                    <button class="show-more bg-gray-700 rounded-full p-2 cursor-pointer hover:bg-gray-600" onclick="loadMore()">←</button>
-                    <button class="show-prev bg-gray-700 rounded-full p-2 cursor-pointer hover:bg-gray-600 ml-2" onclick="loadPrev() ">→ </button>
+                    <button class="show-more bg-gray-700 rounded-full p-2 cursor-pointer hover:bg-gray-600" onclick="loadPrev() ">←</button>
+                    <button class="show-prev bg-gray-700 rounded-full p-2 cursor-pointer hover:bg-gray-600 ml-2" onclick="loadMore() ">→ </button>
                 </div>
                 ${similarHtml}
             </div>
@@ -162,3 +166,13 @@ function loadPrev() {
         display(); 
     }
 }
+
+function showLoading() {
+    const spinner = document.getElementById("loading-spinner");
+    spinner.classList.remove("hidden");
+  }
+  
+  function hideLoading() {
+    const spinner = document.getElementById("loading-spinner");
+    spinner.classList.add("hidden");
+  }
