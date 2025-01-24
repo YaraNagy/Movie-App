@@ -58,7 +58,7 @@ document.getElementById('login-form').addEventListener('submit', function (e) {
                     localStorage.setItem('user', JSON.stringify(users[0]));
                     showAlert('Login successful!', true);
                     setTimeout(() => {
-                        window.location.href = './Home.html';
+                        window.location.href = '../Home Page/Home.html';
                     }, 1500);
                 } else {
                     showAlert('Invalid email or password.');
