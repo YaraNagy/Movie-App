@@ -1,5 +1,4 @@
-# Movie App (yaranagy-movie-app)
-
+# Movie App
 A web application built with HTML, Tailwind CSS, and vanilla JavaScript that allows users to browse movies, TV shows, and people using The Movie Database (TMDB) API. It features trending lists, search functionality, detailed views, and basic user authentication using `json-server` for local user data management.
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/YaraNagy/Movie-App)
